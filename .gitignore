@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+dbteasy_env/
+test_dbteasy_env/
