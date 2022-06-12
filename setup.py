@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.2.4",
     author="Arthur Morais",
     author_email="arthurfmmorais@gmail.com",
-    description="A small example package",
+    description="A small package to simplify the use of dbt core",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ArthurMor4is/dbteasy",
