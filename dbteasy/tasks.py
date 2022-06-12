@@ -48,12 +48,6 @@ def refresh(c):
     pass
 
 
-@task
-def config(c):
-    print(bcolors.OKGREEN + "export DBT_PROFILES_DIR=`pwd`" + bcolors.ENDC)
-    c.run("export DBT_PROFILES_DIR=`pwd`")
-
-
 @task(deps)
 def docs(c):
     print(
@@ -84,7 +78,7 @@ def run_changed(c):
     )
     models_diff_list = models_diff_result.split("\n")
     models_diff_list = [model for model in models_diff_list if model != ""]
-    if models_diff_list:
+    if len(models_diff_list) > 0:
         result_model_list = []
         for model in models_diff_list:
             model_name = model.split("/")[-1].split(".")[0]
