@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="dbteasy",
-    version="0.2.5",
+    version="0.2.6",
     author="Arthur Morais",
     author_email="arthurfmmorais@gmail.com",
     description="A small package to simplify the use of dbt core",
