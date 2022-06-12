@@ -82,7 +82,8 @@ def run_changed(c):
         .communicate()[0]
         .decode("utf-8")
     )
-    models_diff_list = models_diff_result.split("\n").remove("")
+    models_diff_list = models_diff_result.split("\n")
+    models_diff_list = [model for model in models_diff_list if model != ""]
     if models_diff_list:
         result_model_list = []
         for model in models_diff_list:
