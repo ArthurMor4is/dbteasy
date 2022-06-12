@@ -23,10 +23,6 @@ setuptools.setup(
     py_modules=["dbteasy"],
     python_requires=">=3.9.13",
     packages=setuptools.find_packages(),
-    install_requires=[
-        "invoke==1.7.1"
-    ],
-    entry_points={
-        'console_scripts': ['dbteasy = dbteasy.main:program.run']
-    }
+    install_requires=["invoke==1.7.1"],
+    entry_points={"console_scripts": ["dbteasy = dbteasy.main:program.run"]},
 )
