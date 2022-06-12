@@ -80,13 +80,20 @@ def docs(c):
 
 
 @task
-def run_changed(c):
+def run_changed(c, compare_branch=""):
     """
-    Capture modified sql files from models using git diff (n_models). Run dbt run --models (n_models).
+    Capture modified sql files from models using git diff (n_models) against current branch or, 
+    optionally, againts another branch defined by the argument 'compare_branch'.
+
+    It runs `dbt run --models (n_models)`.
     """
+    if compare_branch == "":
+        print(f"Capturing modified sql files from models against current branch...")
+    else:
+        print(f"Capturing modified sql files from models against {compare_branch} branch...")
     models_diff_result = (
         subprocess.Popen(
-            "git diff --name-only | grep '\.sql'$",
+            f"git diff --name-only {compare_branch}| grep '\.sql'$",
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
