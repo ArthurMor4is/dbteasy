@@ -1,12 +1,11 @@
 import setuptools
-from dbteasy.constants import VERSION
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="dbteasy",
-    version=VERSION,
+    version="0.1.0",
     author="Arthur Morais",
     author_email="arthurfmmorais@gmail.com",
     description="A small example package",
