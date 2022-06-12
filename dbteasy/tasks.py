@@ -19,12 +19,18 @@ class bcolors:
 
 @task
 def clean(c):
+    """
+    Equivalent to dbt clean.
+    """
     print(bcolors.OKGREEN + "Removing temporary files ..." + bcolors.ENDC)
     c.run("dbt clean")
 
 
 @task
 def deps(c):
+    """
+    Equivalent to dbt deps.
+    """
     print(
         bcolors.OKGREEN
         + "Pulling the most recent version of the dependencies ..."
@@ -35,6 +41,9 @@ def deps(c):
 
 @task
 def seed(c):
+    """
+    Equivalent to dbt seed.
+    """
     print(
         bcolors.OKGREEN
         + "Loading csv files located in the seed-paths directory ..."
@@ -45,11 +54,17 @@ def seed(c):
 
 @task(clean, deps, seed)
 def refresh(c):
+    """
+    Equivalent to dbt clean ; dbt deps ; dbt seed.
+    """
     pass
 
 
 @task(deps)
 def docs(c):
+    """
+    Equivalent to dbt docs generate ; dbt docs serve.
+    """
     print(
         bcolors.OKGREEN
         + "Generating your project's documentation website ..."
@@ -66,6 +81,9 @@ def docs(c):
 
 @task
 def run_changed(c):
+    """
+    Capture modified sql files from models using git diff (n_models). Run dbt run --models (n_models).
+    """
     models_diff_result = (
         subprocess.Popen(
             "git diff --name-only | grep '\.sql'$",
