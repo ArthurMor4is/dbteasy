@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="dbteasy",
-    version="0.2.2",
+    version="0.2.3",
     author="Arthur Morais",
     author_email="arthurfmmorais@gmail.com",
     description="A small example package",
