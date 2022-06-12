@@ -2,7 +2,7 @@ name: Publish Python 🐍 distributions 📦 to PyPI
 
 push:
   branches:
-    - 'dev'
+    - 'main'
 
 jobs:
   build-and-publish:
