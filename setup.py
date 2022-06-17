@@ -23,6 +23,6 @@ setuptools.setup(
     py_modules=["dbteasy"],
     python_requires=">=3.9",
     packages=setuptools.find_packages(),
-    install_requires=["invoke==1.7.1", "dbt-core==1.1.0"],
+    install_requires=["invoke==1.7.1"],
     entry_points={"console_scripts": ["dbteasy = dbteasy.main:program.run"]},
 )
