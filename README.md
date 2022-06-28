@@ -8,7 +8,7 @@ This project uses [Invoke (*pythonic* task runner) as a library](https://docs.py
 The main purpose of `dbteasy` is to provide an alternative CLI to work with [dbt core](https://github.com/dbt-labs/dbt-core) reducing the time needed to execute repetitive commands
 
 
-![example workflow](https://github.com/ArthurMor4is/dbteasy/actions/workflows/publish-to-pypi.yml/badge.svg)
+![example workflow](https://github.com/ArthurMor4is/dbteasy/actions/workflows/publish-to-pypi.yml/badge.svg) [![Downloads](https://pepy.tech/badge/dbteasy)](https://pepy.tech/project/dbteasy)
 
 ## Requirements
 
