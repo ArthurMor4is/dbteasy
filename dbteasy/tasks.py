@@ -1,20 +1,16 @@
+from typing import List
+
 from invoke import task
-import subprocess
+from dbteasy.utils import (
+    get_changed_models,
+    get_modified_files,
+    extract_only_model_names,
+    bcolors,
+)
+
 import logging
 
 logging.getLogger().setLevel(logging.INFO)
-
-
-class bcolors:
-    HEADER = "\033[95m"
-    OKBLUE = "\033[94m"
-    OKCYAN = "\033[96m"
-    OKGREEN = "\033[92m"
-    WARNING = "\033[93m"
-    FAIL = "\033[91m"
-    ENDC = "\033[0m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
 
 
 @task
@@ -80,29 +76,23 @@ def docs(c):
 
 
 @task
-def run_changed(c):
+def run_changed(c, compare_branch=""):
     """
-    Capture modified sql files from models using git diff (n_models). Run dbt run --models (n_models).
+    Capture modified sql files from models using git diff (n_models) against current branch or,
+    optionally, againts another branch defined by the argument 'compare_branch'.
+
+    It runs `dbt run --models (n_models)`.
     """
-    models_diff_result = (
-        subprocess.Popen(
-            "git diff --name-only | grep '\.sql'$",
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        .communicate()[0]
-        .decode("utf-8")
-    )
-    models_diff_list = models_diff_result.split("\n")
-    models_diff_list = [model for model in models_diff_list if model != ""]
-    if len(models_diff_list) > 0:
-        result_model_list = []
-        for model in models_diff_list:
-            model_name = model.split("/")[-1].split(".")[0]
-            result_model_list.append(model_name)
-        result_models = " ".join(result_model_list)
-        print(bcolors.OKBLUE + f"Models changed: {result_models}" + bcolors.OKBLUE)
-        c.run("dbt run --models {}".format(result_models))
-    else:
-        print(bcolors.OKBLUE + f"No models changed" + bcolors.OKBLUE)
+    changed_models: List[str] = get_changed_models(compare_branch)
+    if changed_models:
+        c.run("dbt run --models {}".format(" ".join(changed_models)))
+
+
+@task
+def test_changed(c, compare_branch=""):
+    """
+    Test modified models against current branch or, optionally,
+    againts another branch defined by the argument 'compare_branch'.
+    """
+    changed_models: List[str] = get_changed_models(compare_branch)
+    c.run("dbt test --models {}".format(" ".join(changed_models)))

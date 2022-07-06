@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="dbteasy",
-    version="0.2.6",
+    version="0.3.0",
     author="Arthur Morais",
     author_email="arthurfmmorais@gmail.com",
     description="A small package to simplify the use of dbt core",
@@ -21,7 +21,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     py_modules=["dbteasy"],
-    python_requires=">=3.9.13",
+    python_requires=">=3.9",
     packages=setuptools.find_packages(),
     install_requires=["invoke==1.7.1"],
     entry_points={"console_scripts": ["dbteasy = dbteasy.main:program.run"]},
