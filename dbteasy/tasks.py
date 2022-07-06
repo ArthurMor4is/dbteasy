@@ -1,7 +1,7 @@
 from typing import List
 
 from invoke import task
-from utils import (
+from dbteasy.utils import (
     get_changed_models,
     get_modified_files,
     extract_only_model_names,
@@ -95,4 +95,4 @@ def test_changed(c, compare_branch=""):
     againts another branch defined by the argument 'compare_branch'.
     """
     changed_models: List[str] = get_changed_models(compare_branch)
-    c.run("dbt run --models {}".format(changed_models))
+    c.run("dbt test --models {}".format(" ".join(changed_models)))

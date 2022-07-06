@@ -55,8 +55,8 @@ def get_changed_models(compare_branch: str = "") -> List[str]:
     modified_files: List[str] = get_modified_files(compare_branch)
     changed_models: List[str] = extract_only_model_names(modified_files)
     if modified_files:
-        models_string = "\n".join(changed_models)
-        print(bcolors.OKBLUE + f"Models changed: {models_string}" + bcolors.OKBLUE)
+        models_string = "\n\t".join(changed_models)
+        print(bcolors.OKBLUE + f"Models changed:\n\t{models_string}" + bcolors.OKBLUE)
     else:
         print(bcolors.OKBLUE + f"No models changed" + bcolors.OKBLUE)
     return changed_models
