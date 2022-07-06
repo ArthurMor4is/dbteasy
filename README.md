@@ -26,6 +26,8 @@ $ pip install dbteasy
 $ dbteasy --version
 ```
 
+You can also build the lib locally using `pip install -e .`.
+
 ## Main commands
 
 ```shell
